@@ -1,7 +1,38 @@
-<iframe 
-  src="https://www.weathernerds.org/satellite/?initsatsrc=On&initsatname=GOES-E&initsattype=ir&initcscheme=ir1&initimdimx=1050&initimdimy=630&initrange=55.000:-130.000:20.000:-60.000&initloop=False&initnframes=20&initlightningge=On&initlightninggw=Off&initltngfed=Off&initltngtoe=Off&initinterstates=On&initwarnings=On&initlatlon=Off&initascatb=Off&initascatc=Off&initascatambb=Off&initascatambc=Off&initsst=Off&initecens=Off&initgefs=Off" 
-  width="1050" 
-  height="630" 
-  style="border: none; max-width: 100%;"
-  allowfullscreen>
-</iframe>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Mapa Satelital</title>
+    <!-- Librerías de Leaflet para el mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body { margin: 0; padding: 0; font-family: sans-serif; display: flex; height: 100vh; }
+        #sidebar { width: 100px; background: #f4f4f4; padding: 10px; overflow-y: auto; border-right: 1px solid #ccc; }
+        #map { flex: 1; }
+        .menu-btn { width: 100%; margin-bottom: 5px; padding: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <button class="menu-btn">Opciones</button>
+        <!-- Aquí vas a ir poniendo tus botones -->
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+        // Inicializa el mapa centrado en EE.UU. (similar a tu URL)
+        var map = L.map('map').setView([37.5, -95], 4);
+
+        // Carga las imágenes de satélite GOES-East Infrarrojo desde un servidor público
+        L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes-east-ir-4km/{z}/{x}/{y}.png', {
+            maxZoom: 8,
+            attribution: 'Datos: NOAA / Iowa State'
+        }).addTo(map);
+    </script>
+
+</body>
+</html>
